@@ -1,12 +1,13 @@
 import React, { useRef, useEffect } from "react";
 import './hit.css'; // Import the new stylesheet
+import type { BaseHit } from 'instantsearch.js';
 
 type HitProps = {
-  hit: {
+  hit: BaseHit & {
     title?: string;
     description?: string;
     url?: string;
-    [key: string]: any;
+    [key: string]: unknown;
   };
 };
 

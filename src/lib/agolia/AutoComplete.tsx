@@ -25,7 +25,6 @@ import { debounce } from '@algolia/autocomplete-shared';
 
 import {
   INSTANT_SEARCH_INDEX_NAME,
-  INSTANT_SUGGESTION_INDEX,
   INSTANT_SEARCH_HIERARCHICAL_ATTRIBUTES
 } from '@/lib/constant';
 
@@ -214,7 +213,7 @@ export default function Autocomplete({
     });
 
     return [recentSearches, querySuggestions, querySuggestionsInCategory];
-  }, [currentCategory]);
+  }, [currentCategory, searchClient]);
 
   useEffect(() => {
     if (!autocompleteContainer.current) {
@@ -253,7 +252,7 @@ export default function Autocomplete({
     });
 
     return () => autocompleteInstance.destroy();
-  }, [plugins]);
+  }, [plugins, autocompleteProps, currentCategory, debouncedSetInstantSearchUiState, query]);
 
   return <div className={className} ref={autocompleteContainer}/>;
 }
